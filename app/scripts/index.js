@@ -7,7 +7,11 @@ var map = [
     [0,0,0,0,1],
     [1,0,1,0,1],
     [1,0,1,0,1],
-    [1,1,1,2,1]
+    [1,1,1,0,1],
+    [1,1,0,0,0],
+    [1,1,0,2,0],
+    [1,1,0,0,0],
+    [1,1,1,1,1],
 ];
 
 
@@ -80,6 +84,8 @@ function initMap(){
 
     addWalls();
 
+    GAME.map.step = 1;
+
     GAME.player = new Player(GAME.camera);
     GAME.map.add(GAME.player.getObject());
 }
@@ -100,6 +106,16 @@ function addWalls(){
                 )
             }
         }
+    }
+
+    for(var i = -1; i <= map.length; ++i){
+        addWall(i,-1);
+        addWall(i,map[0].length);
+    }
+
+    for(var j = 0; j < map[0].length; ++j){
+        addWall(-1, j);
+        addWall(map.length, j);
     }
 }
 
@@ -124,6 +140,8 @@ function addWall(i,j){
         .to({x: cube.position.x, y: cube.position.y, z: 0.5}, 2000).start();
 }
 
+
+
 function animate(){
     requestAnimationFrame(animate);
 
@@ -136,4 +154,20 @@ function render(){
     GAME.renderer.render(GAME.scene, GAME.camera);
 }
 
+$(document).on("keydown", function(e){
+    console.log(e.key);
 
+    switch(e.key){
+    case "ArrowUp":
+        GAME.player.forward(GAME.map.step);
+        break;
+    case "ArrowDown":
+        GAME.player.forward(-GAME.map.step);
+        break;
+    case "ArrowLeft":
+        GAME.player.left();
+        break;
+    case "ArrowRight":
+        GAME.player.right();
+    }
+})
