@@ -1,0 +1,21 @@
+{
+  "name": "mazer",
+  "description": "",
+  "main": "main.js",
+  "authors": [
+    "J Sola"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "three.js": "threejs#*",
+    "jquery": "^3.0.0"
+  }
+}

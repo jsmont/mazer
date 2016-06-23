@@ -1,0 +1,26 @@
+{
+  "name": "mazer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsmont/mazer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsmont/mazer/issues"
+  },
+  "homepage": "https://github.com/jsmont/mazer#readme",
+  "dependencies": {
+    "asar": "^0.11.0",
+    "electron-prebuilt": "^1.2.4",
+    "fs-jetpack": "^0.9.1",
+    "rcedit": "^0.5.0",
+    "q": "*"
+  }
+}
