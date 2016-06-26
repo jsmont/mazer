@@ -1,18 +1,18 @@
-function Player(camera){
+function Player(camera,start){
     
-    this.createObject();
+    this.createObject(start);
     this.addSprite();
     this.addLights();
     this.setUpCamera(camera);
 
 }
 
-Player.prototype.createObject = function(){
+Player.prototype.createObject = function(start){
     this.object = new THREE.Object3D();
     this.object.position.set(
-        GAME.map.meta.start.x,
-        GAME.map.meta.start.y,
-        GAME.map.meta.start.z
+        start.x,
+        start.y,
+        start.z
     );
 
     this.direction = new THREE.Vector3(-1,0,0);
@@ -29,13 +29,13 @@ Player.prototype.add = function(o){
 
 Player.prototype.addLights = function(){
     this.lights = {};
-    this.lights.inner = this.addPointLight(0,0,0)
-    this.lights.hover = this.addPointLight(0,0,1.5,0.5);
+    this.lights.inner = this.addPointLight(0,0,0,1,2)
+    this.lights.hover = this.addPointLight(0,0,1.5,0.5,2);
 }
 
-Player.prototype.addPointLight = function(x, y, z, i){
+Player.prototype.addPointLight = function(x, y, z, i, d){
     i = typeof(i) == "undefined"? 1:  i;
-    var  light = new THREE.PointLight(0xffffff, i, 2);
+    var  light = new THREE.PointLight(0xffffff, i, d);
     light.position.set(x, y, z);
     this.add(light);
 
