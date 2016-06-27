@@ -1,6 +1,6 @@
 const MAP_FLOOR_TEXTURE = THREE.ImageUtils.loadTexture("textures/map-cube.jpg");
-const WALL = 1;
-const START = 2;
+const SPACE = 0;
+const START = -1;
 
 function Map(data){
 
@@ -41,7 +41,8 @@ Map.prototype.addPlane = function(){
     this.plane = new THREE.Mesh(
         new THREE.PlaneGeometry(this.width*100, this.height*100),
         new THREE.MeshPhongMaterial({
-            map: MAP_FLOOR_TEXTURE
+            map: MAP_FLOOR_TEXTURE,
+            shininess: 0
         })
     );
 
@@ -59,7 +60,7 @@ Map.prototype.addWalls = function(){
         for(var j = 0; j < this.height; ++j){
             var tile = row[j];
 
-            if(tile == WALL){
+            if(tile != SPACE && tile != START){
                 map_row[j] = this.addWall(tile, i,j);
             } else {
                 map_row[j] = null;

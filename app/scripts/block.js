@@ -1,21 +1,15 @@
-const WALL_BLOCK = 1;
-
-if(typeof MATERIALS == "undefined"){
-    MATERIALS = {};
-}
-
-MATERIALS.BLOCK = {
-    WALL : new THREE.MeshPhongMaterial({
-        map: TEXTURES.map.cube
-    })
-
-};
+const BLOCKDEFAULT_MATERIAL = new THREE.MeshPhongMaterial({
+    map: TEXTURES.map.cube,
+    shininess: 0
+});
 
 function Block(type){
     this.type = type;
-
+    this.setSpecifics();
     this.createObject();
 }
+
+Block.types = [];
 
 Block.prototype.createObject = function(){
 
@@ -47,15 +41,19 @@ Block.prototype.getObject = function(){
 };
 
 Block.prototype.getMaterial = function(){
-    switch(this.type){
-
-    case WALL_BLOCK:
-        
-        return MATERIALS.BLOCK.WALL;
-    
-    default:
-
-        return MATERIALS.BLOCK.WALL;
-        
-    }
+    return BLOCKDEFAULT_MATERIAL;
 }
+
+Block.prototype.setSpecifics = function(){
+
+    var that = this;
+    var type = Block.types.find(function(t){
+        return t.type == that.type
+    });
+    
+    if(typeof type != "undefined"){
+        var proto = this.__proto__;
+        this.__proto__ = type.class.prototype;
+        this.__proto__.__proto__ = proto;
+    }
+};
