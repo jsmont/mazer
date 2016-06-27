@@ -47,6 +47,7 @@ function init(){
 
 function initGL(){
     GAME.scene = new THREE.Scene();
+    GAME.scene.fog = new THREE.Fog(0x000000, 3, 5);
     
     GAME.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
     GAME.camera.position.set(4,4,4);

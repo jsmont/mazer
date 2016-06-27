@@ -23,6 +23,9 @@ Block.prototype.createObject = function(){
 
 }
 
+Block.prototype.add = function(o){
+    this.object.add(o);
+};
 
 Block.prototype.setPosition = function(x,y,z){
 
