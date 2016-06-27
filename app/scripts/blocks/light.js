@@ -5,7 +5,7 @@ const LIGHTBLOCK_MATERIAL = new THREE.MeshLambertMaterial({
     map: TEXTURES.map.cube
 });
 
-Block.types.push({type: LIGHTBLOCK_T, class: LightBlock});
+Block.types[LIGHTBLOCK_T] = LightBlock.prototype;
 
 function LightBlock(type){
 }

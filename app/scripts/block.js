@@ -46,14 +46,10 @@ Block.prototype.getMaterial = function(){
 
 Block.prototype.setSpecifics = function(){
 
-    var that = this;
-    var type = Block.types.find(function(t){
-        return t.type == that.type
-    });
+    var type = Block.types[this.type];
     
     if(typeof type != "undefined"){
-        var proto = this.__proto__;
-        this.__proto__ = type.class.prototype;
-        this.__proto__.__proto__ = proto;
+        type.__proto__ = this.__proto__;
+        this.__proto__ = type;
     }
 };

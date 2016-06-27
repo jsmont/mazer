@@ -4,7 +4,7 @@ const WALLBLOCK_MATERIAL = new THREE.MeshPhongMaterial({
     shininess: 0
 });
 
-Block.types.push({type: WALLBLOCK_T, class: WallBlock});
+Block.types[WALLBLOCK_T] = WallBlock.prototype;
 
 function WallBlock(type){
 }
